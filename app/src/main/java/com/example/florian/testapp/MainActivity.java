@@ -2,6 +2,8 @@ package com.example.florian.testapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -17,6 +19,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private ListView  listView;
+    private RecyclerView rv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +27,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 //        Recuperer la vue listView du layout xml pour l'utiliser coe notre adapterView
-        listView = (ListView) findViewById(R.id.listViewID);
+//        listView = (ListView) findViewById(R.id.listViewID);
+
+        rv = (RecyclerView) findViewById(R.id.listViewID);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setAdapter(new MyAdapter());
 
 //        Creer la liste de donnees a transmettre a notre adapter
         String[] data = new String[] {"item 1", "item 2", "item 3", "item 4", "item 5", "item 6",
@@ -66,32 +73,37 @@ public class MainActivity extends AppCompatActivity {
 //        Fournir au gestionnaire de vue (adapterView) les elements de chaque vue contenu dans adapter
         listView.setAdapter(adapter);
      */
-        ListAdapter adapter = new SimpleAdapter(this,
-                // Valeurs à insérer
-                liste,
 
-                /*
-                Layout de chaque élément (là, il s'agit d'un layout par défaut pour avoir 2 textes l'un au-dessus de l'autre,
-                c'est pourquoi on n'affiche que le nom et le numéro d'une personne)
-                 */
-                android.R.layout.simple_list_item_2,
 
-                /*
-                Les clés des informations à afficher pour chaque élément :
-                - la valeur associée à la clé "text 1" sera la première information
-                - la valeur associée à la clé "test 2" sera la seconde information
-                 */
-                new String[] {"text 1", "text 2"},
+//
+//        ListAdapter adapter = new SimpleAdapter(this,
+//                // Valeurs à insérer
+//                liste,
+//
+//                /*
+//                Layout de chaque élément (là, il s'agit d'un layout par défaut pour avoir 2 textes l'un au-dessus de l'autre,
+//                c'est pourquoi on n'affiche que le nom et le numéro d'une personne)
+//                 */
+//                android.R.layout.simple_list_item_2,
+//
+//                /*
+//                Les clés des informations à afficher pour chaque élément :
+//                - la valeur associée à la clé "text 1" sera la première information
+//                - la valeur associée à la clé "test 2" sera la seconde information
+//                 */
+//                new String[] {"text 1", "text 2"},
+//
+//                /*
+//                Enfin, les layouts à appliquer à chaque widget de notre élément (ce sont des layouts fournis par défaut) :
+//                - la première information appliquera le layout 'android.R.id.text1'
+//                - la seconde information appliquera le layout 'android.R.id.text2'
+//                 */
+//                new int[] {android.R.id.text1, android.R.id.text2} );
+//
+//        // Pour finir, on donne à la listView le SimpleAdapter
+//        listView.setAdapter(adapter);
+//
 
-                /*
-                Enfin, les layouts à appliquer à chaque widget de notre élément (ce sont des layouts fournis par défaut) :
-                - la première information appliquera le layout 'android.R.id.text1'
-                - la seconde information appliquera le layout 'android.R.id.text2'
-                 */
-                new int[] {android.R.id.text1, android.R.id.text2} );
-
-        // Pour finir, on donne à la listView le SimpleAdapter
-        listView.setAdapter(adapter);
     }
 
     @Override
